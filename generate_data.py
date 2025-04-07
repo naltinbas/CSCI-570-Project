@@ -27,11 +27,11 @@ for input_file in input_files:
     
     m_plus_n = len(s1_generated) + len(s2_generated)
     
-    basic_3.main(str(input_file), str(basic_output))
-    print(f"  basic_3.py executed successfully for {input_name}")
+    # basic_3.main(str(input_file), str(basic_output))
+    # print(f"  basic_3.py executed successfully for {input_name}")
     
-    efficient_3.main(str(input_file), str(efficient_output))
-    print(f"  efficient_3.py executed successfully for {input_name}")
+    # efficient_3.main(str(input_file), str(efficient_output))
+    # print(f"  efficient_3.py executed successfully for {input_name}")
     
     basic_time = "N/A"
     basic_memory = "N/A"

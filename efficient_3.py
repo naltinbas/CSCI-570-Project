@@ -66,11 +66,11 @@ class MemoryEfficientSA:
 
     def run(self):
         if len(self.seq1)>len(self.seq2):
-            aligned_seq2, aligned_seq1 = self.alignment(self.seq2, self.seq1)
-            cost = self.compute_last_row(self.seq2, self.seq1)[-1]
-        else:
             aligned_seq1, aligned_seq2 = self.alignment(self.seq1, self.seq2)
             cost = self.compute_last_row(self.seq1, self.seq2)[-1]
+        else:
+            aligned_seq2, aligned_seq1 = self.alignment(self.seq2, self.seq1)
+            cost = self.compute_last_row(self.seq2, self.seq1)[-1]
         return cost, aligned_seq1, aligned_seq2
         
 

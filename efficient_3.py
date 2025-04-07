@@ -65,22 +65,17 @@ class MemoryEfficientSA:
                 left_alignment[1] + right_alignment[1])
 
     def run(self):
-        aligned_seq1, aligned_seq2 = self.alignment(self.seq1, self.seq2)
-        cost = self.compute_last_row(self.seq1, self.seq2)[-1]
+        if len(self.seq1)>len(self.seq2):
+            aligned_seq2, aligned_seq1 = self.alignment(self.seq2, self.seq1)
+            cost = self.compute_last_row(self.seq2, self.seq1)[-1]
+        else:
+            aligned_seq1, aligned_seq2 = self.alignment(self.seq1, self.seq2)
+            cost = self.compute_last_row(self.seq1, self.seq2)[-1]
         return cost, aligned_seq1, aligned_seq2
         
 
-if __name__ == "__main__":
-    
-    if len(sys.argv) != 3:
-        print("Usage: python3 efficient_3.py input.txt output.txt")
-        sys.exit(1)
-    
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-    
+def main(input_file, output_file):
     s1_base, indices1, s2_base, indices2 = parse_input_file(input_file)
-    
     s1_generated = generate_string(s1_base, indices1)
     s2_generated = generate_string(s2_base, indices2)
     
@@ -90,10 +85,17 @@ if __name__ == "__main__":
     (alignment_cost, aligned_seq1, aligned_seq2), time_taken = time_wrapper(aligner.run)
     
     mem_after = process_memory()
+    memory_used = mem_after - mem_before
     
     with open(output_file, 'w') as f:
         f.write(f'{alignment_cost}\n')
         f.write(aligned_seq1 + "\n")
         f.write(aligned_seq2 + "\n")
         f.write(f'{time_taken}\n')
-        f.write(f'{mem_after - mem_before}')
+        f.write(f'{memory_used}')
+
+if __name__ == '__main__':
+    if len(sys.argv) != 3:
+        print("Usage: python efficient_3.py <input_file> <output_file>")
+    else:
+        main(sys.argv[1], sys.argv[2])

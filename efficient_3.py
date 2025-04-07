@@ -76,8 +76,21 @@ class MemoryEfficientSA:
 
 def main(input_file, output_file):
     s1_base, indices1, s2_base, indices2 = parse_input_file(input_file)
+    
+    j = len(indices1)
+    k = len(indices2)
+    if j > 20 or k > 20:
+        with open(output_file, 'w') as f:
+            f.write("Cannot process")
+        return
+    
     s1_generated = generate_string(s1_base, indices1)
     s2_generated = generate_string(s2_base, indices2)
+    
+    if len(s1_generated) < 1 or len(s1_generated) > 20000 or len(s2_generated) < 1 or len(s2_generated) > 20000:
+        with open(output_file, 'w') as f:
+            f.write("Cannot process")
+        return
     
     mem_before = process_memory()
     

@@ -79,15 +79,14 @@ def main(input_file, output_file):
     
     j = len(indices1)
     k = len(indices2)
-    if j > 10 or k > 10:
+    if j >= 11 or k >= 11:
         with open(output_file, 'w') as f:
             f.write("Cannot process")
         return
     
     s1_generated = generate_string(s1_base, indices1)
     s2_generated = generate_string(s2_base, indices2)
-    
-    if len(s1_generated) < 1 or len(s1_generated) > 2000 or len(s2_generated) < 1 or len(s2_generated) > 2000:
+    if len(s1_generated) <= 0 or len(s1_generated) >= 2001 or len(s2_generated) <= 0 or len(s2_generated) >= 2001:
         with open(output_file, 'w') as f:
             f.write("Cannot process")
         return

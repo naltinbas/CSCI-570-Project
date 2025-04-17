@@ -79,7 +79,7 @@ def main(input_file, output_file):
     
     j = len(indices1)
     k = len(indices2)
-    if j > 20 or k > 20:
+    if j >= 21 or k >= 21:
         with open(output_file, 'w') as f:
             f.write("Cannot process")
         return
@@ -87,7 +87,7 @@ def main(input_file, output_file):
     s1_generated = generate_string(s1_base, indices1)
     s2_generated = generate_string(s2_base, indices2)
     
-    if len(s1_generated) < 1 or len(s1_generated) > 20000 or len(s2_generated) < 1 or len(s2_generated) > 20000:
+    if len(s1_generated) <= 0 or len(s1_generated) >= 20001 or len(s2_generated) <= 0 or len(s2_generated) >= 20001:
         with open(output_file, 'w') as f:
             f.write("Cannot process")
         return
